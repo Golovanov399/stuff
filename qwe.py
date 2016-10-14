@@ -239,7 +239,7 @@ if var == "find_coeffs":
 	b[1] = 1
 	b = list(map(Ratio, b))
 	res = lin_eq_solve(A, b)
-	equation = " + ".join("\\frac{%d}{%d}f(n%s)" % (res[i].a, res[i].b, show_signed_with_h(a[i])) for i in xrange(n))
+	equation = " + ".join("\\frac{%d}{%dh}f(n%s)" % (res[i].a, res[i].b, show_signed_with_h(a[i])) for i in xrange(n))
 	for i in xrange(n):
 		print print_taylor_expansion(a[i], n) + " \\\\"
 	print equation + " = f'(n) + o\\left(h^%d\\right)" % (n-1)
