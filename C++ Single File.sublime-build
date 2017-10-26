@@ -1,0 +1,34 @@
+{
+	"shell_cmd": "g++ -DLOCAL -I/home/golovanov/misc/precompiled-headers/Debug -std=c++11 -g -O0 -D_GLIBCXX_DEBUG -Wall -Wextra \"${file}\" -o \"${file_path}/${file_base_name}\"",
+	"file_regex": "^(..[^:]*):([0-9]+):?([0-9]+)?:? (.*)$",
+	"working_dir": "${file_path}",
+	"selector": "source.c, source.c++",
+
+	"variants":
+	[
+		{
+			"name": "Compile & run",
+			"shell_cmd": "g++ -DLOCAL -I/home/golovanov/misc/precompiled-headers/Debug -std=c++11 -g -O0 -D_GLIBCXX_DEBUG -Wall -Wextra \"${file}\" -o \"${file_path}/${file_base_name}\" && \"${file_path}/${file_base_name}\""
+		},
+
+		{
+			"name": "Compile & run in terminal",
+			"shell_cmd": "g++ -DLOCAL -I/home/golovanov/misc/precompiled-headers/Debug -std=c++11 -g -O0 -D_GLIBCXX_DEBUG -Wall -Wextra \"${file}\" -o \"${file_path}/${file_base_name}\" && xterm -fa \"Monospace\" -fs 12 -e 'bash -c \"${file_path}/${file_base_name}; echo; echo Press any key to continue...; read -n 1 -s\"' > /dev/null",
+		},
+
+		{
+			"name": "Release compile",
+			"shell_cmd": "g++ -DLOCAL -I/home/golovanov/misc/precompiled-headers/Release -std=c++11 -O2 -Wno-unused-result \"${file}\" -o \"${file_path}/${file_base_name}\""
+		},
+
+		{
+			"name": "Release compile & run",
+			"shell_cmd": "g++ -DLOCAL -I/home/golovanov/misc/precompiled-headers/Release -std=c++11 -O2 -Wno-unused-result \"${file}\" -o \"${file_path}/${file_base_name}\" && \"${file_path}/${file_base_name}\""
+		},
+
+		{
+			"name": "Release compile & run in terminal",
+			"shell_cmd": "g++ -DLOCAL -I/home/golovanov/misc/precompiled-headers/Release -std=c++11 -O2 -Wno-unused-result \"${file}\" -o \"${file_path}/${file_base_name}\" && xterm -fa \"Monospace\" -fs 12 -e 'bash -c \"${file_path}/${file_base_name}; echo; echo Press any key to continue...; read -n 1 -s\"' > /dev/null",
+		},
+	]
+}
