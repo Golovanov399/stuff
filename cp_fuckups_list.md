@@ -12,22 +12,22 @@ while (q--) {
     if (!dsu.merge(u, v)) {
         continue;
     }
-    cout << dsu.get_sum_sqr_comp_sizes() << "\n";
+    make_some_logic(u, v);
+    cout << get_cur_ans() << "\n";
 }
 ```
 
-Правильно (лучше):
+Правильно:
 
 ```c++
 while (q--) {
     int u, v;
     cin >> u >> v;
     --u, --v;
-    if (!dsu.merge(u, v)) {
-        cout << dsu.get_sum_sqr_comp_sizes() << "\n";
-        continue;
+    if (dsu.merge(u, v)) {
+        make_some_logic(u, v);
     }
-    cout << dsu.get_sum_sqr_comp_sizes() << "\n";
+    cout << get_cur_ans() << "\n";
 }
 ```
 
