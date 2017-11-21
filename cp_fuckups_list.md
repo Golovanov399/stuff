@@ -10,6 +10,7 @@ while (q--) {
     cin >> u >> v;
     --u, --v;
     if (!dsu.merge(u, v)) {
+        // ниче ж не поменялось)))))) можно сделать continue))))))
         continue;
     }
     make_some_logic(u, v);
