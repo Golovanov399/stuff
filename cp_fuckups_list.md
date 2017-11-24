@@ -128,7 +128,7 @@ while (q--) {
 ## Перенумерация в эйлеровом обходе.
 Неправильно:
 
-```
+```c++
 for (int i = 0; i < n; ++i) {
     tree.update(i, 1);
 }
@@ -139,7 +139,7 @@ for (int i = 0; i < n; ++i) {
 
 Правильно:
 
-```
+```c++
 for (int i = 0; i < n; ++i) {
     tree.update(tin[i], 1);
 }
@@ -205,7 +205,7 @@ int occurs(const string& s, const string& t) {
 ## В `merge` для вершин дерева отрезков `push_val = UNDEFINED`.
 Неправильно:
 
-```
+```c++
 Node merge(const Node& q, const Node& w) {
     Node res; // или res = q
     res.min = min(q.min, w.min); // или if (w.min < res.min) res = w
@@ -213,7 +213,7 @@ Node merge(const Node& q, const Node& w) {
 }
 ```
 Правильно:
-```
+```c++
 Node merge(const Node& q, const Node& w) {
     Node res;
     res.push_add = 0; // или в объявлении res = {}, если в конструкторе по умолчанию прописано заполнение
