@@ -126,6 +126,27 @@ while (q--) {
 ```
 
 ## Перенумерация в эйлеровом обходе.
+Неправильно:
+
+```
+for (int i = 0; i < n; ++i) {
+    tree.update(i, 1);
+}
+for (int i = 0; i < n; ++i) {
+    cout << tree.get_val(i) << endl;
+}
+```
+
+Правильно:
+
+```
+for (int i = 0; i < n; ++i) {
+    tree.update(tin[i], 1);
+}
+for (int i = 0; i < n; ++i) {
+    cout << tree.get_val(tin[i]) << endl;
+}
+```
 
 ## `vector<char>` хранит числа до 255.
 
@@ -179,8 +200,24 @@ int occurs(const string& s, const string& t) {
 ...
 ```
 
-## Не используются `push_val[v]` после `push(v)` в ДО.
-
 ## Индексы в `dsu` до `n`, а не до `num_comps`.
 
-## В `merge` `push_val = UNDEFINED`.
+## В `merge` для вершин дерева отрезков `push_val = UNDEFINED`.
+Неправильно:
+
+```
+Node merge(const Node& q, const Node& w) {
+    Node res; // или res = q
+    res.min = min(q.min, w.min); // или if (w.min < res.min) res = w
+    return res;
+}
+```
+Правильно:
+```
+Node merge(const Node& q, const Node& w) {
+    Node res;
+    res.push_add = 0; // или в объявлении res = {}, если в конструкторе по умолчанию прописано заполнение
+    res.min = min(q.min, w.min);
+    return res;
+}
+```
