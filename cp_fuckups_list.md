@@ -64,6 +64,32 @@ for (int i = 0; i < m; ++i) {
 }
 ```
 
+## Не забываем построить дерево отрезков после инициализации листьев.
+
+Неправильно:
+```c++
+for (int i = 0; i < n; ++i) {
+    tree.set(i, a[i]);
+}
+for (int i = 0; i < Q; ++i) {
+    int pos, val;
+    cin >> pos >> val;
+    tree.update(pos, val);
+}
+```
+Правильно:
+```c++
+for (int i = 0; i < n; ++i) {
+    tree.set(i, a[i]);
+}
+tree.build();
+for (int i = 0; i < Q; ++i) {
+    int pos, val;
+    cin >> pos >> val;
+    tree.update(pos, val);
+}
+```
+
 ## Лучше `struct` с понятными названиями полей, а не `std::pair`.
 
 Неправильно:
