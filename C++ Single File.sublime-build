@@ -1,6 +1,6 @@
 // precompile
-// g++ -DLOCAL -std=c++17 -g -O0 -D_GLIBCXX_DEBUG -Wall -Wextra -x c++-header /usr/include/x86_64-linux-gnu/c++/7.2.0/bits/stdc++.h -o ~/misc/precompiled-headers/Debug/bits/stdc++.h.gch
-// g++ -DLOCAL -std=c++17 -O2 -Wno-unused-result -x c++-header /usr/include/x86_64-linux-gnu/c++/7.2.0/bits/stdc++.h -o ~/misc/precompiled-headers/Release/bits/stdc++.h.gch
+// g++ -DLOCAL -std=c++17 -g -O0 -D_GLIBCXX_DEBUG -Wall -Wextra -x c++-header /usr/include/c++/8.1.1/x86_64-pc-linux-gnu/bits/stdc++.h -o ~/misc/precompiled-headers/Debug/bits/stdc++.h.gch
+// g++ -DLOCAL -std=c++17 -O2 -Wno-unused-result -x c++-header /usr/include/c++/8.1.1/x86_64-pc-linux-gnu/bits/stdc++.h -o ~/misc/precompiled-headers/Release/bits/stdc++.h.gch
 
 {
 	"shell_cmd": "g++ -DLOCAL -I/home/golovanov/misc/precompiled-headers/Debug -std=c++17 -g -O0 -D_GLIBCXX_DEBUG -Wall -Wextra \"${file}\" -o \"${file_path}/${file_base_name}\"",
@@ -17,7 +17,7 @@
 
 		{
 			"name": "Compile & run in terminal",
-			"shell_cmd": "g++ -DLOCAL -I/home/golovanov/misc/precompiled-headers/Debug -std=c++17 -g -O0 -D_GLIBCXX_DEBUG -Wall -Wextra \"${file}\" -o \"${file_path}/${file_base_name}\" && xterm -fa \"Monospace\" -fs 12 -e 'bash -c \"${file_path}/${file_base_name}; echo; echo Press any key to continue...; read -n 1 -s\"' > /dev/null",
+			"shell_cmd": "g++ -DLOCAL -I/home/golovanov/misc/precompiled-headers/Debug -std=c++17 -g -O0 -D_GLIBCXX_DEBUG -Wall -Wextra \"${file}\" -o \"${file_path}/${file_base_name}\" && gnome-terminal -e 'bash -c \"${file_path}/${file_base_name}; echo; echo Press any key to continue...; read -n 1 -s\"' > /dev/null",
 		},
 
 		{
@@ -32,7 +32,7 @@
 
 		{
 			"name": "Release compile & run in terminal",
-			"shell_cmd": "g++ -DLOCAL -I/home/golovanov/misc/precompiled-headers/Release -std=c++17 -O2 -Wno-unused-result \"${file}\" -o \"${file_path}/${file_base_name}\" && xterm -fa \"Monospace\" -fs 12 -e 'bash -c \"${file_path}/${file_base_name}; echo; echo Press any key to continue...; read -n 1 -s\"' > /dev/null",
+			"shell_cmd": "g++ -DLOCAL -I/home/golovanov/misc/precompiled-headers/Release -std=c++17 -O2 -Wno-unused-result \"${file}\" -o \"${file_path}/${file_base_name}\" && gnome-terminal -e 'bash -c \"${file_path}/${file_base_name}; echo; echo Press any key to continue...; read -n 1 -s\"' > /dev/null",
 		},
 	]
 }
