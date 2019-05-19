@@ -1,0 +1,36 @@
+.mdc-top-app-bar {
+    position: static;
+}
+
+.rounds-interface-page .mdc-top-app-bar--fixed-adjust--additional {
+    padding-top: 0;
+}
+
+.mdc-top-app-bar--fixed-adjust {
+    padding-top: 0;
+}
+
+.problems-bar-graphs {
+    visibility: collapse;
+    height: 3px;
+}
+
+.mdc-button {
+    height: 28px;
+}
+
+.show-round-overview-toggle {
+    visibility: collapse;
+}
+
+.rounds-interface-page .ranking-table .ranking-table__row {
+    height: 3rem;
+}
+
+/*:root {
+    --mdc-layout-grid-column-width-desktop-hd:46px;
+    --mdc-layout-grid-column-width-desktop:34px;
+    --mdc-layout-grid-margin-desktop-hd:16px;
+    --mdc-layout-grid-margin-desktop:16px;
+}*/
+
