@@ -6,7 +6,7 @@
     padding-top: 0;
 }
 
-.mdc-top-app-bar--fixed-adjust {
+.mdc-top-app-bar--fixed-adjust:not(.competition-interface-section) {
     padding-top: 0;
 }
 
@@ -33,4 +33,3 @@
     --mdc-layout-grid-margin-desktop-hd:16px;
     --mdc-layout-grid-margin-desktop:16px;
 }*/
-
