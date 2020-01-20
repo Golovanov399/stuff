@@ -79,10 +79,19 @@ struct Modular {
 		val = 1ll * val * ot.val % mod;
 	}
 
-	operator long long() const {
-		return val;
+	bool operator ==(const Modular& ot) const {
+		return val == ot.val;
+	}
+
+	bool operator !=(const Modular& ot) const {
+		return val != ot.val;
 	}
 };
+
+template <int mod>
+ostream& operator <<(ostream& ostr, const Modular<mod>& x) {
+	return ostr << x.val;
+}
 
 // [end] Modular
 
@@ -93,6 +102,7 @@ struct Matrix {
 	array<array<T, N>, N> a;
 
 	Matrix(): a({}) {}
+	Matrix(const array<array<T, N>, N>& _a): a(_a) {}
 
 	Matrix operator +(const Matrix& ot) const {
 		Matrix res;
