@@ -417,3 +417,131 @@ pair<long long, long long> crt(const vector<long long>& rems, const vector<long 
 }
 
 // [end] general stuff
+
+// prime counting function
+
+namespace prime_counting {
+
+const int N = 111111111;
+vector<int> primes;
+int erat[N];
+
+struct Query {
+	long long ans;
+	int n, k;
+};
+
+struct Fenwick {
+	int n;
+	vector<int> a;
+
+	Fenwick(int _n): n(_n), a(_n) {}
+
+	void add(int pos, int x) {
+		while (pos < n) {
+			a[pos] += x;
+			pos |= pos + 1;
+		}
+	}
+
+	int get(int pos) {
+		int res = 0;
+		while (pos >= 0) {
+			res += a[pos];
+			pos = (pos & (pos + 1)) - 1;
+		}
+		return res;
+	}
+};
+
+void memoizeQueries(long long n, int k, int K, vector<Query>& qrs) {
+	if (n == 0) {
+		return;
+	}
+	if (k == 0) {
+		return;
+	}
+	if (n < K) {
+		qrs.push_back({0, (int)n, k});
+	} else if (1ll * primes[k - 1] * primes[k - 1] > n) {
+		memoizeQueries(n, upper_bound(all(primes), sqrtl(n)) - primes.begin(), K, qrs);
+	} else {
+		memoizeQueries(n, k - 1, K, qrs);
+		memoizeQueries(n / primes[k - 1], k - 1, K, qrs);
+	}
+}
+
+long long calcPi(long long n, int k, int K, vector<Query>& qrs) {
+	if (n == 0) {
+		return 0;
+	}
+	if (k == 0) {
+		return n;
+	}
+	if (n < K) {
+		long long res = qrs.back().ans;
+		qrs.pop_back();
+		return res;
+	} else if (1ll * primes[k - 1] * primes[k - 1] > n) {
+		int j = upper_bound(all(primes), sqrtl(n)) - primes.begin();
+		long long res = calcPi(n, j, K, qrs) + j - k;
+		return res;
+	} else {
+		long long res = calcPi(n, k - 1, K, qrs);
+		res -= calcPi(n / primes[k - 1], k - 1, K, qrs);
+		return res;
+	}
+}
+
+long long Pi(long long n) {
+	if (n < N) {
+		return upper_bound(all(primes), n) - primes.begin();
+	}
+	const int K = powl(n / logl(n), 2.0 / 3);
+	// cerr << K << "\n";
+	int k = upper_bound(all(primes), sqrtl(n)) - primes.begin();
+	vector<Query> qrs;
+	memoizeQueries(n, k, K, qrs);
+	if (K <= 2) {
+		return upper_bound(all(primes), n) - primes.begin();
+	}
+	vector<int> all_guys(K - 2);
+	iota(all(all_guys), 2);
+	sort(all(all_guys), [&](int i, int j) {
+		return erat[i] > erat[j];
+	});
+	vector<int> qids(qrs.size());
+	iota(all(qids), 0);
+	sort(all(qids), [&](int i, int j) {
+		return qrs[i].k > qrs[j].k;
+	});
+	Fenwick f(K);
+	for (int i = 0, j = 0; i < (int)qids.size(); ++i) {
+		while (j < (int)all_guys.size() && erat[all_guys[j]] >= primes[qrs[qids[i]].k]) {
+			f.add(all_guys[j], 1);
+			++j;
+		}
+		qrs[qids[i]].ans = f.get(qrs[qids[i]].n) + 1;
+	}
+	reverse(all(qrs));
+	return calcPi(n, k, K, qrs) + k - 1;
+}
+
+void init() {
+	erat[1] = 1;
+	for (int i = 2; i < N; ++i) {
+		if (erat[i] == 0) {
+			erat[i] = i;
+			primes.push_back(i);
+		}
+
+		for (int p : primes) {
+			if (p > erat[i] || p * i >= N) {
+				break;
+			}
+			erat[i * p] = p;
+		}
+	}
+}
+
+} // namespace prime_counting
