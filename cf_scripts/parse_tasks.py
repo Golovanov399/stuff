@@ -39,6 +39,6 @@ for prob in probs:
 		with open("%s/in%d.in" % (index, i), "w") as f:
 			print(sample_text(inp.find("pre")), file=f)
 		with open("%s/out%d.out" % (index, i), "w") as f:
-			print(sample_text(inp.find("pre")), file=f)
+			print(sample_text(out.find("pre")), file=f)
 	for file in ["qwe.cpp", "check.sh"]:
 		copyfile(file, index + "/" + file)
